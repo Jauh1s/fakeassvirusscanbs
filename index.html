@@ -180,9 +180,9 @@ btn.onclick = async () => {
     fill.style.width = i + "%";
 
     status.textContent =
-      msgs[Math.min(msgs.length-1,Math.floor(i/25))];
+      msgs[Math.min(msgs.length-1,Math.floor(i/50))];
 
-    await new Promise(r => setTimeout(r,70));
+    await new Promise(r => setTimeout(r,120));
   }
 
   fake.forEach(([a,b]) => {
