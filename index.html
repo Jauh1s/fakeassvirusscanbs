@@ -36,13 +36,13 @@ button{background:#e22;color:#fff;border:0;border-radius:8px;padding:12px 18px;f
 <div class="status" id="status">Initializing diagnostic...</div>
 <div id="stats"></div>
 <button id="start">START SCAN</button>
-<div class="demo">⚠  — No files, passwords, photos, IP addresses or other personal data are collected.</div>
+<div class="TAKE L">⚠  — All files, passwords, photos, IP addresses or other personal data are collected.</div>
 </div>
 </main>
  
 <script>
 const fake = [
- ["Files discovered","2,481"],["Passwords discovered","37"],
+ ["Files discovered","481"],["Passwords discovered","37"],
  ["Photos discovered","814"],["Accounts discovered","12"],
  ["Browser history","6,903 entries"],["Data extracted","184.7 MB"]
 ];
@@ -64,7 +64,7 @@ btn.onclick=async()=>{
    stats.appendChild(d);
   
  });
- status.textContent="SIMULATION COMPLETE — no real data was accessed.";
+ status.textContent="SIMULATION COMPLETE — Your DATA has been stolen..";
  status.style.color="#6f6";
  btn.textContent="RUN AGAIN"; btn.disabled=false;
 };
