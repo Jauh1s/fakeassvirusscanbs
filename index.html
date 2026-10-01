@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SECURITY BREACH — DEMO</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#050505;color:#eee;font-family:Arial,sans-serif;min-height:100vh;display:grid;place-items:center}
+.box{width:min(700px,92%);padding:28px;background:#0d0d0d;border:2px solid #e22;border-radius:14px;box-shadow:0 0 35px #300}
+h1{color:#ff3030;margin:0 0 8px;font-size:clamp(28px,6vw,46px)}
+.warning{color:#ff9a9a;margin-bottom:24px}.row{display:flex;justify-content:space-between;border-bottom:1px solid #292929;padding:11px 0}
+.label{color:#999}.value{font-weight:bold}.bar{height:18px;background:#222;border-radius:10px;overflow:hidden;margin:12px 0 20px}.fill{height:100%;width:0;background:#e33;transition:width .25s}
+.status{font-family:monospace;color:#ff6565;min-height:22px;margin:15px 0}
+.demo{margin-top:22px;padding:13px;background:#171717;border-radius:8px;color:#aaa;text-align:center;font-size:13px}
+button{background:#e22;color:#fff;border:0;border-radius:8px;padding:12px 18px;font-weight:bold;cursor:pointer}button:disabled{opacity:.5}
+</style>
+</head>
+<body>
+<main class="box">
+<div id="screen">
+<h1>⚠ SECURITY BREACH</h1>
+<div class="warning">DEVICE COMPROMISED — SCANNING FOR DATA...</div>
+<div class="bar"><div class="fill" id="fill"></div></div>
+<div class="status" id="status">Initializing diagnostic...</div>
+<div id="stats"></div>
+<button id="start">START DEMO SCAN</button>
+<div class="demo">⚠ HARMLESS DEMO — No files, passwords, photos, IP addresses or other personal data are collected.</div>
+</div>
+</main>
+<script>
+const fake = [
+ ["Files discovered","2,481"],["Passwords discovered","37"],
+ ["Photos discovered","814"],["Accounts discovered","12"],
+ ["Browser history","6,903 entries"],["Data extracted","184.7 MB"]
+];
+const stats=document.getElementById("stats"), fill=document.getElementById("fill");
+const status=document.getElementById("status"), btn=document.getElementById("start");
+btn.onclick=async()=>{
+ btn.disabled=true; stats.innerHTML="";
+ const msgs=["Scanning device...","Searching user files...","Analyzing browser data...","Preparing data transfer...","Finalizing report..."];
+ for(let i=0;i<=100;i+=4){
+   fill.style.width=i+"%";
+   status.textContent=msgs[Math.min(msgs.length-1,Math.floor(i/25))];
+   await new Promise(r=>setTimeout(r,70));
+ }
+ fake.forEach(([a,b])=>{
+   const d=document.createElement("div"); d.className="row";
+   d.innerHTML=`<span class="label">${a}</span><span class="value">${b}</span>`;
+   stats.appendChild(d);
+ });
+ status.textContent="SIMULATION COMPLETE — no real data was accessed.";
+ status.style.color="#6f6";
+ btn.textContent="RUN AGAIN"; btn.disabled=false;
+};
+</script>
+</body>
+</html>
